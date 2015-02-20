@@ -1,6 +1,10 @@
 jest.dontMock('./../components/Stacks.jsx');
 jest.dontMock('./../components/Stack.jsx');
 
+jest.setMock('mozaik/browser', {
+    Mixin: { ApiConsumer: null }
+});
+
 var React, TestUtils, Stacks, stacks;
 
 describe('AWS — Stacks', function () {

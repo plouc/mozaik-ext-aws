@@ -6,19 +6,19 @@ var gulp         = require('gulp')
     , replace    = require('gulp-regex-replace')
     , stripDebug = require('gulp-strip-debug');
 
-gulp.task('lib-clean', function(cb){
-    del('./lib', cb);
-})
+gulp.task('lib-clean', function (done) {
+    del('./lib', done);
+});
 
-gulp.task('lib-compile', [ 'lib-clean' ], function(){
+gulp.task('lib-compile', [ 'lib-clean' ], function () {
     return gulp.src(['./src/**/*.js', './src/**/*.jsx'])
         .pipe(plumber())
         .pipe(toFive({}))
         .pipe(replace({regex: "\\.jsx", replace: ''}))
         .pipe(rename({ extname: '.js' }))
-        .pipe(stripDebug())
-        .pipe(gulp.dest('./lib'));
-})
+        //.pipe(stripDebug())
+        .pipe(gulp.dest('./lib'))
+    ;
+});
 
-
-gulp.task('lib', [ 'lib-clean', 'lib-compile'])
+gulp.task('lib', ['lib-clean', 'lib-compile']);

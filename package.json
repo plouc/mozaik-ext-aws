@@ -1,6 +1,6 @@
 {
   "name": "mozaik-ext-aws",
-  "version": "0.0.1",
+  "version": "0.0.6-beta",
   "description": "Mozaik AWS widgets",
   "repository": {
     "type": "git",
@@ -15,9 +15,11 @@
   },
   "homepage": "https://github.com/plouc/mozaik-ext-aws",
   "dependencies": {
-    "superagent-bluebird-promise": "^0.6.0"
+    "aws-sdk": "^2.1.12",
+    "bluebird": "^2.9.12",
+    "convict": "^0.6.1"
   },
-  "main": "./aws.js",
+  "main": "./components.js",
   "devDependencies": {
     "del": "^1.1.1",
     "gulp": "^3.8.11",
@@ -32,15 +34,7 @@
     "reflux": "^0.2.5"
   },
   "scripts": {
-    "test": "jest"
-  },
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/src/preprocessor.js",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/lodash",
-      "<rootDir>/node_modules/moment"
-    ]
+    "prepublish": "gulp lib"
   },
   "peerDependencies": {
     "mozaik": "*"

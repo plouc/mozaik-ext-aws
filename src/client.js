@@ -29,20 +29,6 @@ var client = function (mozaik) {
             return def.promise;
         },
 
-        stacks() {
-            var def = Promise.defer();
-
-            cloudFormation.describeStacks({}, function (err, data) {
-                if (err) {
-                    def.reject(err);
-                } else {
-                    def.resolve(data.Stacks);
-                }
-            });
-
-            return def.promise;
-        },
-
         instances() {
             var def             = Promise.defer();
             var amis            = [];

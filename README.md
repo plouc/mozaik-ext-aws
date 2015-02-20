@@ -1,5 +1,7 @@
 # Mozaïk AWS widgets
 
+[![Travis CI][https://img.shields.io/travis/plouc/mozaik-ext-aws.svg?style=flat-square]][https://travis-ci.org/plouc/mozaik-ext-aws]
+
 ## AWS Stacks
 
 > Display a list of your existing AWS stacks.

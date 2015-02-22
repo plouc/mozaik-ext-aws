@@ -1,6 +1,6 @@
 {
   "name": "mozaik-ext-aws",
-  "version": "0.0.11-beta",
+  "version": "0.0.12-beta",
   "description": "Mozaik AWS widgets",
   "repository": {
     "type": "git",

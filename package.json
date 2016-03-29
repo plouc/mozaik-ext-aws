@@ -43,5 +43,10 @@
   },
   "scripts": {
     "test": "echo \"Fix tests!\" && exit 0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
   }
 }

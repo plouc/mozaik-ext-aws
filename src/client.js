@@ -1,22 +1,24 @@
-var Promise = require('bluebird');
-var AWS     = require('aws-sdk');
-var config  = require('./config');
+import Promise from 'bluebird';
+import AWS     from 'aws-sdk';
+import _       from 'lodash';
+import chalk   from 'chalk';
+import config  from './config';
 
 /**
  * @param {Mozaik} mozaik
  */
-var client = function (mozaik) {
+const client = function (mozaik) {
 
     mozaik.loadApiConfig(config);
 
     AWS.config.region = config.get('aws.region');
 
-    var ec2            = new AWS.EC2();
-    var cloudFormation = new AWS.CloudFormation();
+    const ec2            = new AWS.EC2();
+    const cloudFormation = new AWS.CloudFormation();
 
     return {
         stacks() {
-            var def = Promise.defer();
+            const def = Promise.defer();
 
             cloudFormation.describeStacks({}, function (err, data) {
                 if (err) {
@@ -30,10 +32,10 @@ var client = function (mozaik) {
         },
 
         instances() {
-            var def             = Promise.defer();
-            var amis            = [];
-            var vpcsInstanceIds = {};
-            var instances       = [];
+            const def             = Promise.defer();
+            const amis            = [];
+            const vpcsInstanceIds = {};
+            const instances       = [];
 
             ec2.describeInstances({}, function (err, data) {
                 if (err) {

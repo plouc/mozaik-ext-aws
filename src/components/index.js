@@ -1,4 +1,7 @@
-module.exports = {
-    Instances: require('./Instances.jsx'),
-    Stacks:    require('./Stacks.jsx')
+import Instances from './Instances.jsx'
+// import Stacks from './Stacks.jsx'
+
+export default {
+  Instances: Instances
+  // Stacks: Stacks
 };

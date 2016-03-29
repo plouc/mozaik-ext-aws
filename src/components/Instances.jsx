@@ -1,13 +1,17 @@
-var React            = require('react');
-var Reflux           = require('reflux');
-var _                = require('lodash');
-var ApiConsumerMixin = require('mozaik/browser').Mixin.ApiConsumer;
+import React, { Component, PropTypes } from 'react';
+import reactMixin                      from 'react-mixin';
+import { ListenerMixin }               from 'reflux';
+import _                               from 'lodash';
+import Mozaik                          from 'mozaik/browser';
+// import Instance                        from './Instance.jsx';
 
-var Instances = React.createClass({
-    mixins: [
-        Reflux.ListenerMixin,
-        ApiConsumerMixin
-    ],
+class Instances extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            instances: []
+        }
+    }
 
     getInitialState() {
         return {
@@ -33,33 +37,40 @@ var Instances = React.createClass({
     },
 
     render() {
-        var instanceNodes = _.map(this.state.instances, instance => {
-            var cssClass = 'aws__instance aws__instance--' + instance.state;
-
-            return (
-                <div key={instance.id} className={cssClass}>
-                    {instance.name}
-                    {instance.state}
-                    <span  className="aws__instance__id">{instance.id}</span>
-                </div>
-            );
-        });
+      var instanceNodes = _.map(this.state.instances, instance => {
+        var cssClass = 'aws__instance aws__instance--' + instance.state;
 
         return (
-            <div>
-                <div className="widget__header">
-                    AWS instances
-                    <span className="widget__header__count">
-                        {this.state.instances.length}
-                    </span>
-                    <i className="fa fa-hdd-o" />
-                </div>
-                <div className="widget__body">
-                    {instanceNodes}
-                </div>
-            </div>
+          <div key={instance.id} className={cssClass}>
+            {instance.name}
+            {instance.state}
+            <span  className="aws__instance__id">{instance.id}</span>
+          </div>
         );
-    }
-});
+      });
 
-module.exports = Instances;
+      return (
+        <div>
+          <div className="widget__header">
+            AWS instances
+            <span className="widget__header__count">
+              {this.state.instances.length}
+            </span>
+            <i className="fa fa-hdd-o" />
+          </div>
+          <div className="widget__body">
+            {instanceNodes}
+          </div>
+        </div>
+      );
+    }
+}
+
+Instances.propTypes = {
+  nameFilter: PropTypes.any
+};
+
+reactMixin(Instances.prototype, ListenerMixin);
+reactMixin(Instances.prototype, Mozaik.Mixin.ApiConsumer);
+
+export { Instances as default };

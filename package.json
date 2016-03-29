@@ -27,7 +27,7 @@
     "reflux": "^0.2.5",
     "superagent": "^1.2.0"
   },
-  "main": "./components.js",
+  "main": "./src/components/index.js",
   "devDependencies": {
     "babel": "^5.8.12",
     "babel-eslint": "^1.0.6",

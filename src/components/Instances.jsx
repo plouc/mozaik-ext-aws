@@ -17,13 +17,13 @@ class Instances extends Component {
         return {
             instances: []
         };
-    },
+    }
 
     getApiRequest() {
         return {
             id: 'aws.instances'
         };
-    },
+    }
 
     onApiData(instances) {
         // if we have an available filter on instance name, apply it
@@ -34,7 +34,7 @@ class Instances extends Component {
         this.setState({
             instances: instances
         });
-    },
+    }
 
     render() {
       var instanceNodes = _.map(this.state.instances, instance => {

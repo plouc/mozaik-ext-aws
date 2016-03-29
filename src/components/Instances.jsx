@@ -28,7 +28,18 @@ class Instances extends Component {
     onApiData(instances) {
         // if we have an available filter on instance name, apply it
         if (this.props.nameFilter) {
-            instances = _.where(instances, instance => this.props.nameFilter.test(instance.name));
+            instances = _.filter(instances, instance => this.props.nameFilter.test(instance.name));
+        }
+        if (this.props.tagFilter) {
+            instances = _.filter(instances, instance => {
+              let retVal = false
+              _.each(this.props.tagFilter, (val, key) => {
+                if (!retVal) {
+                  retVal = instance.tags.hasOwnProperty(key) && instance.tags[key] === val;
+                }
+              });
+              return retVal
+            });
         }
 
         this.setState({
@@ -67,7 +78,8 @@ class Instances extends Component {
 }
 
 Instances.propTypes = {
-  nameFilter: PropTypes.any
+  nameFilter: PropTypes.any,
+  tagFilter: PropTypes.object,
 };
 
 reactMixin(Instances.prototype, ListenerMixin);

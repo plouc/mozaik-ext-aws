@@ -21,12 +21,16 @@
     }
 
     &--running {
+      color: $success-color;
+
       &:before {
         background: $success-color;
       }
     }
 
     &--stopped {
+      color: $failure-color;
+
       &:before {
         background: $failure-color;
       }
@@ -37,6 +41,22 @@
       right: 15px;
       font-size: 12px;
       color: darken($main-txt-color, 20);
+    }
+
+    &__name {
+      font-weight: 600;
+      color: darken($main-txt-color, 20);
+    }
+
+    &__state {
+      font-weight: 600;
+      font-size: 80%
+      &:before {
+        content: ' ('
+      }
+      &:after {
+        content: ')'
+      }
     }
   }
 

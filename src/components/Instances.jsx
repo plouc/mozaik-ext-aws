@@ -53,8 +53,12 @@ class Instances extends Component {
 
         return (
           <div key={instance.id} className={cssClass}>
-            {instance.name}
-            {instance.state}
+            <span className="aws__instance__name">
+              {instance.name}
+            </span>
+            <span className="aws__instance__state">
+              {instance.state}
+            </span>
             <span  className="aws__instance__id">{instance.id}</span>
           </div>
         );

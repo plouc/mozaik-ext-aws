@@ -15,6 +15,7 @@ const client = function (mozaik) {
 
     const ec2            = new AWS.EC2();
     const cloudFormation = new AWS.CloudFormation();
+    const s3             = new AWS.S3();
 
     return {
         stacks() {
@@ -25,6 +26,20 @@ const client = function (mozaik) {
                     def.reject(err);
                 } else {
                     def.resolve(data.Stacks);
+                }
+            });
+
+            return def.promise;
+        },
+
+        buckets() {
+            const def = Promise.defer();
+
+            s3.listBuckets({}, function (err, data) {
+                if (err) {
+                    def.reject(err);
+                } else {
+                    def.resolve(data.Buckets);
                 }
             });
 
@@ -77,7 +92,6 @@ const client = function (mozaik) {
                             }
                         });
                     });
-
                     def.resolve(instances);
                 }
             });

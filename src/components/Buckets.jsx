@@ -37,11 +37,9 @@ class Buckets extends Component {
         return (
           <div className={cssClass} key={bucket.Name}>
             <span className="aws__instance__name">
-              {bucket.Name}
+              {bucket.name}
             </span>
-            <span className="aws__instance__date">
-              {bucket.CreationDate}
-            </span>
+            <span  className="aws__instance__id">{bucket.length}</span>
           </div>
         );
       });
